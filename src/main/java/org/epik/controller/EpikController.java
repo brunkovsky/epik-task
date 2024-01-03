@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/history")
+@RequestMapping("${server.host}")
 @AllArgsConstructor
 public class EpikController {
 

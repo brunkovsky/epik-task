@@ -18,13 +18,16 @@ spring:
     name: epik-task
 
 server:
+  host: /api/v1/history
   port: 8080
+
+security:
+  api:
+    header: X-API-KEY
+    key: epik-api-key
 
 logging:
   logTimeExec: true
   file:
     name: log/epik-task.log
     max-size: 1MB
-
-api:
-  key: epik-api-key

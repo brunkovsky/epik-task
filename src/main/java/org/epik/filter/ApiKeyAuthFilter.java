@@ -17,8 +17,15 @@ import java.util.Date;
 @Component
 public class ApiKeyAuthFilter extends OncePerRequestFilter {
 
-    @Value("${api.key}")
+    @Value("${security.api.key}")
     private String apiKey;
+
+    @Value("${security.api.header}")
+    String apiHeader;
+
+    @Value("${server.host}")
+    String host;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -36,8 +43,8 @@ public class ApiKeyAuthFilter extends OncePerRequestFilter {
     }
 
     private boolean allowedToExecute(HttpServletRequest request) {
-        boolean isSwaggerRequest = !request.getRequestURI().startsWith("/api/v1/history");
-        boolean isAuthenticated = apiKey.equals(request.getHeader("X-API-KEY"));
+        boolean isSwaggerRequest = !request.getRequestURI().startsWith(host);
+        boolean isAuthenticated = apiKey.equals(request.getHeader(apiHeader));
         return isSwaggerRequest || isAuthenticated;
     }
 
