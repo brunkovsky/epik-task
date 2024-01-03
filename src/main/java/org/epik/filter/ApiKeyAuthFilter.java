@@ -34,6 +34,7 @@ public class ApiKeyAuthFilter extends OncePerRequestFilter {
         if (allowedToExecute(request)) {
             filterChain.doFilter(request, response);
             long end = new Date().getTime();
+            // the way to log execution time using servlet filter
             log.info(request.getRequestURI() + ": " + (end - start) + "ms");
         } else {
             log.error(HttpStatus.UNAUTHORIZED.toString());

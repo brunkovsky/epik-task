@@ -18,6 +18,7 @@ public class LogTimeExecutionAspect {
     private boolean logTimeExec;
 
 
+    // the way to log execution time using aspects
     @Around("@annotation(LogTimeExecution)")
     public Object showResult(ProceedingJoinPoint joinPoint) throws Throwable {
         if (logTimeExec) {
