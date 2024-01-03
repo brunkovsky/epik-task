@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+  mariadb:
+    image: mariadb
+    restart: "always"
+    environment:
+      MARIADB_ROOT_PASSWORD: secret
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  epik:
+    image: epik-task
+    restart: "no"
+    volumes:
+      - ./log:/log
+    ports:
+      - "8080:8080"
