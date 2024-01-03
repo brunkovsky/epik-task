@@ -10,5 +10,6 @@ CREATE TABLE IF NOT EXISTS epik.history (
     event_date DATETIME(3),
     user_login VARCHAR(255),
     type_id INTEGER NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (type_id) REFERENCES epik.type(id)
 );
